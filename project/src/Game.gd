@@ -29,22 +29,26 @@ func _end_of_road()->bool:
 # The following are obviously placeholders of the real movement system,
 # but they demonstrate the capability
 func _on_Corydon_pressed():
-	_path_follow = PathFollow2D.new()
-	_path_follow.loop = false
-	_direction = +1
-	$MauckportCorydonRoad.add_child(_path_follow)
-	_moving = true
-	_morgan.play_gallop_animation()
+	_ride($Cities/Mauckport, $Cities/Corydon)
+
+
+func _ride(from:Node2D, to:Node2D):
+	for road in $Roads.get_children():
+		if road.connects(from, to):
+			_path_follow = PathFollow2D.new()
+			_path_follow.loop = false
+			if road.end_city == to:
+				_direction = 1
+			else:
+				_direction = -1
+				# Note: Setting the unit_offset to 1 did not work here, so we have
+				# to set the offset to the length of the corresponding curve
+				_path_follow.offset = road.curve.get_baked_length()
+			road.add_child(_path_follow)
+			_moving = true
+			_morgan.play_gallop_animation()
 
 
 func _on_Mauckport_pressed():
-	_path_follow = PathFollow2D.new()
-	_path_follow.loop = false
-	_direction = -1
-	# Note: Setting the unit_offset to 1 did not work here, so we have
-	# to set the offset to the length of the corresponding curve
-	_path_follow.offset = $MauckportCorydonRoad.curve.get_baked_length()
-	$MauckportCorydonRoad.add_child(_path_follow)
-	_moving = true
-	_morgan.play_gallop_animation()
+	_ride($Cities/Corydon, $Cities/Mauckport)
 

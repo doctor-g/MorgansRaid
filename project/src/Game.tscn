@@ -4,11 +4,7 @@
 [ext_resource path="res://src/Morgan.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/City.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Game.gd" type="Script" id=4]
-
-[sub_resource type="Curve2D" id=1]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 593, 2799, 0, 0, 0, 0, 685, 2795, 0, 0, 0, 0, 721, 2746, 0, 0, 0, 0, 795, 2746, 0, 0, 0, 0, 805, 2681, 0, 0, 0, 0, 778, 2665, 0, 0, 0, 0, 761, 2573, 0, 0, 0, 0, 737, 2535, 0, 0, 0, 0, 759, 2404 )
-}
+[ext_resource path="res://src/Road.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -37,11 +33,13 @@ position = Vector2( 598.871, 2803.97 )
 [node name="Camera2D" type="Camera2D" parent="Morgan"]
 current = true
 
-[node name="MauckportCorydonRoad" type="Path2D" parent="."]
-curve = SubResource( 1 )
+[node name="Roads" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="PathFollow2D" type="PathFollow2D" parent="MauckportCorydonRoad"]
-position = Vector2( 593, 2799 )
-rotation = -0.0434563
+[node name="MauckportCorydonRoad" parent="Roads" instance=ExtResource( 5 )]
+start_city_path = NodePath("../../Cities/Mauckport")
+end_city_path = NodePath("../../Cities/Corydon")
 [connection signal="pressed" from="Cities/Mauckport" to="." method="_on_Mauckport_pressed"]
 [connection signal="pressed" from="Cities/Corydon" to="." method="_on_Corydon_pressed"]
