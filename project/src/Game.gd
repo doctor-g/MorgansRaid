@@ -42,11 +42,13 @@ func _listen_for_city_press():
 
 func _process(delta):
 	if _moving:
+		assert(_path_follow != null)
 		_path_follow.offset += movement_speed * delta * _direction
 		_morgan.position = _path_follow.position
 		if _end_of_road():
 			_moving = false
 			_morgan.play_idle_animation()
+			_path_follow.get_parent().remove_child(_path_follow)
 			_path_follow.queue_free()
 			_path_follow = null
 			_city = _destination
@@ -61,13 +63,16 @@ func _end_of_road()->bool:
 
 func _on_City_pressed(city:Node2D):
 	_destination = city
+	print("Now in %s, going to %s" % [_city.name, _destination.name])
 	_remove_city_listeners()
 	_ride(_city, _destination)
 
 
 func _ride(from:Node2D, to:Node2D):
-	for road in $Roads.get_children():
+	for child in $Roads.get_children():
+		var road := child as Road
 		if road.connects(from, to):
+			print("Using %s" % road.name)
 			_path_follow = PathFollow2D.new()
 			_path_follow.loop = false
 			if road.end_city == to:
@@ -81,5 +86,6 @@ func _ride(from:Node2D, to:Node2D):
 			_moving = true
 			_morgan.play_gallop_animation()
 			return
+	assert(false, "There is no road from %s to %s" % [from.name,to.name])
 
 

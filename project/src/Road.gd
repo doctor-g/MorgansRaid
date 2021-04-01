@@ -9,6 +9,11 @@ var start_city : Node setget , _get_start_city
 var end_city : Node setget , _get_end_city
 
 
+func _ready():
+	assert(start_city_path!="", "Start city path not specified for %s" % name)
+	assert(end_city_path!="", "End city path not specified for %s" % name)
+
+
 func _get_start_city()->Node:
 	return get_node(start_city_path)
 
