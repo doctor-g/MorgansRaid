@@ -1,0 +1,73 @@
+PRODUCERS
+  Paul Gestwicki and Ronald Morris
+
+DESIGN AND DEVELOPMENT
+  Trent Ferry               Caitlyn Rickey
+  Paul Gestwicki            David Rickey
+  Joshua Hurst              Michael Smith
+  Holden Hill               Dennis Stepp
+  Sam McClure               Ryan Thompson
+  Phillip Parli-Horne
+
+ADDITIONAL DESIGN AND DEVELOPMENT
+  Justin Baechle            Brandon Jones
+  Gary Borton               Joshua Lee
+  Chad Cahill               Greg Loxley
+  Sean Cahill               Thomas Mast
+  Alex Clary                Robert Moran
+  Andrew Depersio           Ronald Morris
+  Nicholas Dunning          Grace Perdew
+  Nathan Fisher             Jeffrey Riggle
+  Christopher Fivecoate     Daniel Roberts
+  Travis Glover             Zhiwen Shen
+  Gunnar Hoffman            Jonathan Strong
+  Mark Inman                Austin Toombs
+
+HISTORY CONSULTANTS
+  Ronald Morris
+  Michael Smith
+
+ART
+  Morgan's Ohio Raid by Mort Künstler,
+  ©2003 Mort Künstler, Inc.
+  www.MortKunstler.com
+
+MUSIC
+  Recordings courtesy of the United States Library of Congress Memory Collection
+  http://memory.loc.gov
+
+SOUND EFFECTS
+  Civil War Drummer courtesy of DrumM8
+  http://soundbible.com/1512-Civil-War-Drummer-.html
+
+DEVELOPED USING
+  Slick 2D Game Engine
+
+SPECIAL THANKS TO
+  Carolyn Shelton
+  Conner Prairie Interactive History Park
+  Elizabeth Costigan
+  Jessica Gestwicki
+  Lowell Miller
+  Mort Künstler
+  Richard Skidmore
+  River Birch Elementary
+  Spencer Davis
+  Storer Elementary
+  Thomas Riegsecker at Basilisk Games
+  The developers of:
+    Lightweight Java Game Library
+    Apache Commons CLI, Collections, Configuration, Digester, Lang, and Logging
+    CruiseControl, EasyMock, Eclipse, Google Guava, Java, JInput, JOgg and JOrbis,
+    Joda Time, JUnit, Log4J, Mercurial, OpenAL, OpenGL, Slick, and SnakeYAML
+
+BALL STATE UNIVERSITY PARTNERS
+  Computer Science Department
+  History Department
+  Honors College
+  Provost Initiative for Immersive Learning
+
+
+a 3:15 Studio production
+
+(c)2011 Ball State University
