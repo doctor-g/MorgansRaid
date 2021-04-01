@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/Map.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Morgan.tscn" type="PackedScene" id=2]
 
 [node name="Game" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource( 1 )]
 position = Vector2( 7.55127, -211.428 )
+
+[node name="Morgan" parent="." instance=ExtResource( 2 )]
+position = Vector2( 595.304, 2807.54 )
+
+[node name="Camera2D" type="Camera2D" parent="Morgan"]
+current = true
