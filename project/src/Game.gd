@@ -11,16 +11,33 @@ var _path_follow : PathFollow2D = null
 var _direction := +1
 
 var _city : Node2D
+var _destination : Node2D
 
 onready var _morgan := $Morgan
 
 func _ready():
-	print(str(start_city))
 	if start_city == "":
 		print("Warning: start_city not specified. Using Mauckport.")
 		start_city = $Cities/Mauckport.get_path()
 	_city = get_node(start_city)
 	_morgan.position = _city.position
+	_listen_for_city_press()
+
+
+func _remove_city_listeners():
+	for child in $Cities.get_children():
+		var city := child as Node2D
+		if city.is_connected("pressed", self, "_on_City_pressed"):
+			city.disconnect("pressed", self, "_on_City_pressed")
+
+
+func _listen_for_city_press():
+	# Add listeners to all the cities Morgan can go to from here
+	for child in $Roads.get_children():
+		var road := child as Road
+		if road.has_terminus(_city):
+			var possible_destination = road.get_other_terminus(_city)
+			possible_destination.connect("pressed", self, "_on_City_pressed", [possible_destination])
 
 
 func _process(delta):
@@ -32,6 +49,9 @@ func _process(delta):
 			_morgan.play_idle_animation()
 			_path_follow.queue_free()
 			_path_follow = null
+			_city = _destination
+			_destination = null
+			_listen_for_city_press()
 
 
 func _end_of_road()->bool:
@@ -39,11 +59,10 @@ func _end_of_road()->bool:
 	  or (_direction < 0 and _path_follow.unit_offset <= 0.0)
 	
 
-
-# The following are obviously placeholders of the real movement system,
-# but they demonstrate the capability
-func _on_Corydon_pressed():
-	_ride($Cities/Mauckport, $Cities/Corydon)
+func _on_City_pressed(city:Node2D):
+	_destination = city
+	_remove_city_listeners()
+	_ride(_city, _destination)
 
 
 func _ride(from:Node2D, to:Node2D):
@@ -61,8 +80,6 @@ func _ride(from:Node2D, to:Node2D):
 			road.add_child(_path_follow)
 			_moving = true
 			_morgan.play_gallop_animation()
+			return
 
-
-func _on_Mauckport_pressed():
-	_ride($Cities/Corydon, $Cities/Mauckport)
 

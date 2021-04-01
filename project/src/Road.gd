@@ -1,3 +1,4 @@
+class_name Road
 extends Path2D
 
 
@@ -17,5 +18,14 @@ func _get_end_city()->Node:
 
 
 func connects(node1:Node, node2:Node)->bool:
-	return _get_start_city()==node1 and _get_end_city() == node2 \
-		or _get_start_city()==node2 and _get_end_city() == node1
+	assert(node1!=node2, "The parameters must be different cities.")
+	return has_terminus(node1) and has_terminus(node2)
+
+
+func has_terminus(city:Node)->bool:
+	return _get_start_city()==city or _get_end_city()==city
+
+
+# Given one city, return the one at the other end of the road
+func get_other_terminus(city:Node)->Node:
+	return _get_start_city() if _get_end_city()==city else _get_end_city()

@@ -42,5 +42,3 @@ __meta__ = {
 [node name="MauckportCorydonRoad" parent="Roads" instance=ExtResource( 5 )]
 start_city_path = NodePath("../../Cities/Mauckport")
 end_city_path = NodePath("../../Cities/Corydon")
-[connection signal="pressed" from="Cities/Mauckport" to="." method="_on_Mauckport_pressed"]
-[connection signal="pressed" from="Cities/Corydon" to="." method="_on_Corydon_pressed"]
