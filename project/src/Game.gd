@@ -3,11 +3,25 @@ extends Node2D
 # Morgan's speed in units per second
 export var movement_speed := 600
 
+# The city to start the game
+export(NodePath) var start_city
+
 var _moving := false
 var _path_follow : PathFollow2D = null
 var _direction := +1
 
+var _city : Node2D
+
 onready var _morgan := $Morgan
+
+func _ready():
+	print(str(start_city))
+	if start_city == "":
+		print("Warning: start_city not specified. Using Mauckport.")
+		start_city = $Cities/Mauckport.get_path()
+	_city = get_node(start_city)
+	_morgan.position = _city.position
+
 
 func _process(delta):
 	if _moving:

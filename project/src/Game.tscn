@@ -8,6 +8,7 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
+start_city = NodePath("Cities/Mauckport")
 
 [node name="Map" parent="." instance=ExtResource( 1 )]
 position = Vector2( 7.55127, -211.428 )
