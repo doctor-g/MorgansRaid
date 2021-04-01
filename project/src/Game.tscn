@@ -18,15 +18,107 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Mauckport" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 596.01, 2800.67 )
-city_name = "Mauckport"
-population = 500
+[node name="Bethlehem" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2431.59, 1761.26 )
+city_name = "Bethlehem"
+
+[node name="Charleston" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1866.96, 1946.81 )
+city_name = "Charleston"
 
 [node name="Corydon" parent="Cities" instance=ExtResource( 3 )]
 position = Vector2( 764.38, 2403.32 )
 city_name = "Corydon"
 population = 1300
+
+[node name="Dupont" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2232.7, 1123.21 )
+city_name = "Dupont"
+
+[node name="Greenville" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1106.1, 2102.98 )
+city_name = "Greenville"
+
+[node name="Harrison" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 3979.76, 402.77 )
+city_name = "Harrison"
+
+[node name="Hogan" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 3552.74, 757.869 )
+city_name = "Hogan"
+
+[node name="Jeffersonville" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1693.43, 2267.17 )
+city_name = "Jeffersonville"
+
+[node name="Lawrenceburg" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 3844.91, 715.917 )
+city_name = "Lawrenceburg"
+
+[node name="Lexington" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1972.41, 1567.71 )
+city_name = "Lexington"
+
+[node name="Madison" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2545.06, 1366.15 )
+city_name = "Madison"
+
+[node name="Mauckport" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 596.01, 2800.67 )
+city_name = "Mauckport"
+population = 500
+
+[node name="New Albany" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1490.53, 2267.17 )
+city_name = "New Albany"
+
+[node name="New Alscace" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 3498.8, 437.231 )
+city_name = "New Alsace"
+
+[node name="New Liberty" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1383.75, 1735.9 )
+city_name = "New Liberty"
+
+[node name="New Washington" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2184.65, 1745.24 )
+city_name = "New Washington"
+
+[node name="Palmyra" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 823.113, 2034.9 )
+city_name = "Palmyra"
+
+[node name="Paris" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1973.74, 1239.34 )
+city_name = "Paris"
+
+[node name="Pierceville" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 3064.29, 614.032 )
+city_name = "Pierceville"
+
+[node name="Salem" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 829.787, 1662.48 )
+city_name = "Salem"
+
+[node name="Sunman" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 3272.56, 449.218 )
+city_name = "Sunman"
+
+[node name="Utica" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1878.18, 2167.93 )
+city_name = "Utica"
+
+[node name="Vernon" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2024.47, 937.666 )
+city_name = "Vernon"
+
+[node name="Versailles" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2880, 751.876 )
+city_name = "Versailles"
+
+[node name="Vienna" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1634.7, 1571.71 )
+city_name = "Vienna"
 
 [node name="Morgan" parent="." instance=ExtResource( 2 )]
 position = Vector2( 598.871, 2803.97 )
