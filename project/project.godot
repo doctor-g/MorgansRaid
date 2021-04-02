@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "City",
+"language": "GDScript",
+"path": "res://src/City.gd"
+}, {
 "base": "Path2D",
 "class": "Road",
 "language": "GDScript",
 "path": "res://src/Road.gd"
 } ]
 _global_script_class_icons={
+"City": "",
 "Road": ""
 }
 
@@ -22,6 +28,10 @@ _global_script_class_icons={
 
 config/name="MorgansRaid"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
