@@ -27,6 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="MorgansRaid"
+run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
 [debug]
