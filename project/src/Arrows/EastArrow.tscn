@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Arrows/DirectionalArrow.gd" type="Script" id=1]
 [ext_resource path="res://src/Arrows/Arrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Styles/MapCityFont.tres" type="DynamicFont" id=3]
 
 [node name="EastArrow" type="Node2D"]
 script = ExtResource( 1 )
@@ -9,11 +10,12 @@ script = ExtResource( 1 )
 [node name="Arrow" parent="." instance=ExtResource( 2 )]
 
 [node name="Label" type="Label" parent="."]
-margin_left = -76.6448
+margin_left = -108.563
 margin_top = 32.9633
-margin_right = -11.6448
-margin_bottom = 46.9633
-grow_horizontal = 2
+margin_right = -5.56286
+margin_bottom = 57.9633
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "CITYNAME"
 align = 1

@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/City.gd" type="Script" id=1]
 [ext_resource path="res://assets/Images/city_medium.png" type="Texture" id=2]
+[ext_resource path="res://assets/Styles/MapCityFont.tres" type="DynamicFont" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 95.7049
 
 [node name="City" type="Node2D"]
@@ -13,11 +14,12 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -32.5283
-margin_top = 42.2048
-margin_right = 32.4717
-margin_bottom = 56.2048
+margin_left = -50.0283
+margin_top = 35.47
+margin_right = 49.9717
+margin_bottom = 60.47
 grow_horizontal = 2
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "UNNAMED"
 align = 1
@@ -28,7 +30,7 @@ __meta__ = {
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0.140312, 14.4517 )
