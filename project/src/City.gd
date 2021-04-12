@@ -11,8 +11,16 @@ export var city_name : String = "UNNAMED" setget _set_city_name
 export var population : int = 0 setget _set_population
 
 
+# Report whether this city is currently on screen enough to be selectable.
+# It is not enough to say that just a bit of it is onscreen, and hence
+# the use of multiple regions. A VisibilityNotifier2D triggers if any part
+# of it is visible, but we need multiple areas to be visible.
 func is_on_screen()->bool:
-	return $VisibilityNotifier2D.is_on_screen()
+	for notifier in $VisibilityNotifiers.get_children():
+		var sensor := notifier as VisibilityNotifier2D
+		if not sensor.is_on_screen():
+			return false
+	return true
 
 
 func _set_city_name(value:String)->void:
