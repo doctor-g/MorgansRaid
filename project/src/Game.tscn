@@ -181,67 +181,67 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 2545.59, 1362.54, 0, 0, 0, 0, 2604.32, 1327.83, 0, 0, 0, 0, 2561.61, 1273.1, 0, 0, 0, 0, 2594.98, 1075.55, 0, 0, 0, 0, 2780.52, 902.018, 0, 0, 0, 0, 2879.3, 753.851 )
 }
 
-[sub_resource type="Curve2D" id=38]
+[sub_resource type="Curve2D" id=36]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 2878.91, 755.798, 0, 0, 0, 0, 2946.79, 707.714, 0, 0, 0, 0, 2996.29, 621.447, 0, 0, 0, 0, 3062.75, 608.719 )
 }
 
-[sub_resource type="Curve2D" id=39]
+[sub_resource type="Curve2D" id=37]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3061.34, 610.134, 0, 0, 0, 0, 3165.99, 607.305, 0, 0, 0, 0, 3165.99, 489.925, 0, 0, 0, 0, 3225.39, 488.511, 0, 0, 0, 0, 3273.47, 447.499 )
 }
 
-[sub_resource type="Curve2D" id=40]
+[sub_resource type="Curve2D" id=38]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3276.3, 446.085, 0, 0, 0, 0, 3332.87, 437.6, 0, 0, 0, 0, 3494.09, 437.6 )
 }
 
-[sub_resource type="Curve2D" id=41]
+[sub_resource type="Curve2D" id=39]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3498.33, 436.185, 0, 0, 0, 0, 3636.92, 420.629, 0, 0, 0, 0, 3825.02, 430.529, 0, 0, 0, 0, 3854.71, 406.487, 0, 0, 0, 0, 3984.82, 403.658 )
 }
 
-[sub_resource type="Curve2D" id=42]
+[sub_resource type="Curve2D" id=40]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3061.34, 615.79, 0, 0, 0, 0, 3130.64, 631.347, 0, 0, 0, 0, 3190.03, 635.589, 0, 0, 0, 0, 3307.41, 672.359, 0, 0, 0, 0, 3352.67, 672.359, 0, 0, 0, 0, 3550.66, 761.454 )
 }
 
-[sub_resource type="Curve2D" id=46]
+[sub_resource type="Curve2D" id=41]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 2875.13, 750.298, 0, 0, 0, 0, 2903.41, 808.281, 0, 0, 0, 0, 2911.9, 854.95, 0, 0, 0, 0, 2959.98, 917.176, 0, 0, 0, 0, 2999.58, 1062.84, 0, 0, 0, 0, 3066.04, 1102.44 )
 }
 
-[sub_resource type="Curve2D" id=47]
+[sub_resource type="Curve2D" id=42]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3058.97, 1105.27, 0, 0, 0, 0, 3297.98, 1058.6, 0, 0, 0, 0, 3517.18, 1075.57, 0, 0, 0, 0, 3503.04, 1153.35, 0, 0, 0, 0, 3370.1, 1218.4, 0, 0, 0, 0, 3367.27, 1239.62, 0, 0, 0, 0, 3306.46, 1262.24, 0, 0, 0, 0, 3314.95, 1323.05, 0, 0, 0, 0, 3276.76, 1372.55 )
 }
 
-[sub_resource type="Curve2D" id=48]
+[sub_resource type="Curve2D" id=43]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 2547.03, 1368.31, 0, 0, 0, 0, 2600.77, 1390.94, 0, 0, 0, 0, 2832.7, 1379.62, 0, 0, 0, 0, 3025.03, 1464.48, 0, 0, 0, 0, 3080.19, 1475.79, 0, 0, 0, 0, 3279.59, 1372.55 )
 }
 
-[sub_resource type="Curve2D" id=49]
+[sub_resource type="Curve2D" id=44]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3278.18, 1373.97, 0, 0, 0, 0, 3314.95, 1314.57, 0, 0, 0, 0, 3303.63, 1258, 0, 0, 0, 0, 3367.27, 1241.03, 0, 0, 0, 0, 3371.51, 1221.23, 0, 0, 0, 0, 3503.04, 1156.18, 0, 0, 0, 0, 3517.18, 1079.81, 0, 0, 0, 0, 3607.69, 1079.81, 0, 0, 0, 0, 3660.01, 1057.18, 0, 0, 0, 0, 3699.61, 1057.18, 0, 0, 0, 0, 3725.07, 1041.63, 0, 0, 0, 0, 3757.59, 1041.63, 0, 0, 0, 0, 3783.05, 979.401, 0, 0, 0, 0, 3826.89, 931.318 )
 }
 
-[sub_resource type="Curve2D" id=50]
+[sub_resource type="Curve2D" id=45]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3055.9, 1102, 0, 0, 0, 0, 3289.49, 1057.95, 0, 0, 0, 0, 3607.19, 1083.31, 0, 0, 0, 0, 3656.57, 1056.61, 0, 0, 0, 0, 3705.96, 1056.61, 0, 0, 0, 0, 3723.32, 1043.26, 0, 0, 0, 0, 3760.69, 1040.59, 0, 0, 0, 0, 3778.04, 985.866, 0, 0, 0, 0, 3823.43, 935.142 )
 }
 
-[sub_resource type="Curve2D" id=43]
+[sub_resource type="Curve2D" id=46]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3552.07, 752.969, 0, 0, 0, 0, 3730.26, 774.182, 0, 0, 0, 0, 3754.3, 734.584, 0, 0, 0, 0, 3854.71, 704.886 )
 }
 
-[sub_resource type="Curve2D" id=44]
+[sub_resource type="Curve2D" id=47]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3843.4, 714.785, 0, 0, 0, 0, 3829.26, 614.376, 0, 0, 0, 0, 3825.02, 605.891, 0, 0, 0, 0, 3837.74, 590.335, 0, 0, 0, 0, 3823.6, 562.05, 0, 0, 0, 0, 3833.5, 523.867, 0, 0, 0, 0, 3883, 508.31, 0, 0, 0, 0, 3885.83, 492.754, 0, 0, 0, 0, 3844.81, 464.47, 0, 0, 0, 0, 3891.48, 437.6, 0, 0, 0, 0, 3976.34, 399.416 )
 }
 
-[sub_resource type="Curve2D" id=45]
+[sub_resource type="Curve2D" id=48]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1976.01, 1565.38, 0, 0, 0, 0, 2052.62, 1552.91, 0, 0, 0, 0, 2209.42, 1454.91, 0, 0, 0, 0, 2348.4, 1442.44, 0, 0, 0, 0, 2408.09, 1396.11, 0, 0, 0, 0, 2499.86, 1393.44, 0, 0, 0, 0, 2547.07, 1367.6 )
 }
@@ -589,66 +589,66 @@ start_city_path = NodePath("../../Cities/Madison")
 end_city_path = NodePath("../../Cities/Versailles")
 
 [node name="VersaillesPiercevilleRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 38 )
+curve = SubResource( 36 )
 start_city_path = NodePath("../../Cities/Versailles")
 end_city_path = NodePath("../../Cities/Pierceville")
 
 [node name="PiercevilleSunmanRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 39 )
+curve = SubResource( 37 )
 start_city_path = NodePath("../../Cities/Pierceville")
 end_city_path = NodePath("../../Cities/Sunman")
 
 [node name="SunmanNewAlsaceRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 40 )
+curve = SubResource( 38 )
 start_city_path = NodePath("../../Cities/Sunman")
 end_city_path = NodePath("../../Cities/New Alscace")
 
 [node name="NewAlscaceHarrisonRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 41 )
+curve = SubResource( 39 )
 start_city_path = NodePath("../../Cities/New Alscace")
 end_city_path = NodePath("../../Cities/Harrison")
 
 [node name="PiercevilleHoganRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 42 )
+curve = SubResource( 40 )
 start_city_path = NodePath("../../Cities/Pierceville")
 end_city_path = NodePath("../../Cities/Hogan")
 
 [node name="VersaillesPleasantRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 46 )
+curve = SubResource( 41 )
 start_city_path = NodePath("../../Cities/Versailles")
 end_city_path = NodePath("../../Cities/Pleasant")
 
 [node name="PleasantVevayRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 47 )
+curve = SubResource( 42 )
 start_city_path = NodePath("../../Cities/Pleasant")
 end_city_path = NodePath("../../Cities/Vevay")
 
 [node name="MadisonVevayRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 48 )
+curve = SubResource( 43 )
 start_city_path = NodePath("../../Cities/Madison")
 end_city_path = NodePath("../../Cities/Vevay")
 
 [node name="VevayRisingSunRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 49 )
+curve = SubResource( 44 )
 start_city_path = NodePath("../../Cities/Vevay")
 end_city_path = NodePath("../../Cities/RisingSun")
 
 [node name="PleasantRisingSunRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 50 )
+curve = SubResource( 45 )
 start_city_path = NodePath("../../Cities/Pleasant")
 end_city_path = NodePath("../../Cities/RisingSun")
 
 [node name="HoganLawrenceburgRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 43 )
+curve = SubResource( 46 )
 start_city_path = NodePath("../../Cities/Hogan")
 end_city_path = NodePath("../../Cities/Lawrenceburg")
 
 [node name="LawrenceburgHarrisonRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 44 )
+curve = SubResource( 47 )
 start_city_path = NodePath("../../Cities/Lawrenceburg")
 end_city_path = NodePath("../../Cities/Harrison")
 
 [node name="LexingtonMadisonRoad" parent="Roads" instance=ExtResource( 5 )]
-curve = SubResource( 45 )
+curve = SubResource( 48 )
 start_city_path = NodePath("../../Cities/Lexington")
 end_city_path = NodePath("../../Cities/Madison")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/CityIcon.gd" type="Script" id=1]
+[ext_resource path="res://assets/Images/city_small.png" type="Texture" id=2]
+
+[node name="CityIcon" type="Sprite"]
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
