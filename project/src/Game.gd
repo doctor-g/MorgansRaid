@@ -14,7 +14,7 @@ var _city : Node2D
 var _destination : Node2D
 
 onready var _morgan := $Morgan
-onready var _arrows := $Morgan/Camera2D/Arrows
+onready var _camera := $Camera
 
 func _ready():
 	if start_city == "":
@@ -22,6 +22,7 @@ func _ready():
 		start_city = $Cities/Mauckport.get_path()
 	_city = get_node(start_city)
 	_morgan.position = _city.position
+	_camera.position = _morgan.position
 	
 	# There is a problem right now where, because we go right into
 	# movement, Corydon does not yet think it is on-screen.
@@ -32,57 +33,18 @@ func _ready():
 	_listen_for_city_press()
 
 
-func _remove_city_listeners():
-	for child in $Cities.get_children():
-		var city := child as Node2D
-		if city.is_connected("pressed", self, "_on_City_pressed"):
-			city.disconnect("pressed", self, "_on_City_pressed")
-
-
 func _listen_for_city_press():
+	var cities_on_screen = [_city]
+	
 	# Add listeners to all the cities Morgan can go to from here
 	for child in $Roads.get_children():
 		var road := child as Road
 		if road.has_terminus(_city):
 			var possible_destination : City = road.get_other_terminus(_city)
-			if possible_destination.is_on_screen():
-				possible_destination.connect("pressed", self, "_on_City_pressed", [possible_destination])
-			else:
-				print("Possible destination is %s" % possible_destination.name)
-				var screen_size := get_viewport_rect().size
+			cities_on_screen.append(possible_destination)
+			possible_destination.connect("pressed", self, "_on_City_pressed", [possible_destination])
 				
-				var morgan_screen_pos : Vector2 = _morgan.get_global_transform_with_canvas().origin
-				var city_screen_pos := possible_destination.get_global_transform_with_canvas().origin
-				
-				var side_options = [
-					[   # Right side
-						Vector2(screen_size.x, 0), Vector2(screen_size.x,screen_size.y), 
-						preload("res://src/Arrows/EastArrow.tscn")
-					],
-					[   # Left side
-						Vector2(0,0), Vector2(0, screen_size.y), 
-						preload("res://src/Arrows/WestArrow.tscn")
-					],
-					[   # Top
-						Vector2(0,0), Vector2(screen_size.x, 0), 
-						preload("res://src/Arrows/NorthArrow.tscn")
-					],
-					[   # Bottom
-						Vector2(0, screen_size.y), Vector2(screen_size.x, screen_size.y), 
-						preload("res://src/Arrows/SouthArrow.tscn")
-					]
-				]
-				for option in side_options:
-					var point = Geometry.segment_intersects_segment_2d(\
-						morgan_screen_pos, city_screen_pos, \
-						option[0], option[1])
-					if point is Vector2:
-						var arrow = option[2].instance()
-						arrow.position = point
-						arrow.city_name = possible_destination.name
-						arrow.connect("pressed", self, "_on_OffscreenDestinationArrow_pressed", [possible_destination])				
-						_arrows.add_child(arrow)
-						continue
+	_camera.show_all(cities_on_screen)
 
 
 func _on_OffscreenDestinationArrow_pressed(city:City)->void:
@@ -112,6 +74,7 @@ func _end_of_road()->bool:
 
 func _on_City_pressed(destination:Node2D):
 	_ride(_city, destination)
+	_camera.follow(_morgan)
 
 
 func _ride(from:Node2D, to:Node2D):
@@ -143,10 +106,18 @@ func _ride(from:Node2D, to:Node2D):
 	assert(false, "There is no road from %s to %s" % [from.name,to.name])
 
 
+func _remove_city_listeners():
+	for child in $Cities.get_children():
+		var city := child as Node2D
+		if city.is_connected("pressed", self, "_on_City_pressed"):
+			city.disconnect("pressed", self, "_on_City_pressed")
+
+
 func _remove_offscreen_destination_arrows()->void:
-	for arrow in _arrows.get_children():
-		arrow.disconnect("pressed", self, "_on_OffscreenDestinationArrow_pressed")
-		arrow.queue_free()
+#	for arrow in _arrows.get_children():
+#		arrow.disconnect("pressed", self, "_on_OffscreenDestinationArrow_pressed")
+#		arrow.queue_free()
+	pass
 
 
 func _on_OffScreenDestinationOverlay_direction_selected(_dir:int, city:City):
