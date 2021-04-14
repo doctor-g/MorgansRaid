@@ -12,6 +12,10 @@ export var movement_speed := 600
 # The city to start the game
 export(NodePath) var start_city
 
+# Tourist mode means no raiding
+# It is meant for debugging movement without having to stop and raid.
+export var tourist_mode := false
+
 var _moving := false
 var _path_follow : PathFollow2D = null
 var _direction := +1
@@ -96,7 +100,7 @@ func _process(delta):
 				_path_follow = null
 				_city = _destination
 				_destination = null
-				_enter_state(State.GIVING_ORDERS)
+				_enter_state(State.GIVING_ORDERS if not tourist_mode else State.CHOOSING_DESTINATION)
 
 
 func _end_of_road()->bool:
