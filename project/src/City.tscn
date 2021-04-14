@@ -61,24 +61,6 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
-[node name="VisibilityNotifiers" type="Node2D" parent="."]
-
-[node name="UpperLeft" type="VisibilityNotifier2D" parent="VisibilityNotifiers"]
-position = Vector2( -59.7341, 38.7104 )
-rect = Rect2( -2, -2, 4, 4 )
-
-[node name="LowerLeft" type="VisibilityNotifier2D" parent="VisibilityNotifiers"]
-position = Vector2( -59.7341, 55.0622 )
-rect = Rect2( -2, -2, 4, 4 )
-
-[node name="UpperRight" type="VisibilityNotifier2D" parent="VisibilityNotifiers"]
-position = Vector2( 56.0634, 38.7104 )
-rect = Rect2( -2, -2, 4, 4 )
-
-[node name="LowerRight" type="VisibilityNotifier2D" parent="VisibilityNotifiers"]
-position = Vector2( 56.0634, 55.0622 )
-rect = Rect2( -2, -2, 4, 4 )
-
 [node name="Highlight" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 4 )
