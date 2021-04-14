@@ -1,5 +1,11 @@
 extends Node2D
 
+enum State {
+	CHOOSING_DESTINATION,
+	MOVING,
+	GIVING_ORDERS
+}
+
 # Morgan's speed in units per second
 export var movement_speed := 600
 
@@ -13,8 +19,15 @@ var _direction := +1
 var _city : Node2D
 var _destination : Node2D
 
+var _state
+
 onready var _morgan := $Morgan
 onready var _camera := $Camera
+
+onready var _raid_ui := $HUD/RaidUI
+onready var _city_placard := $HUD/RaidUI/CityPlacard
+onready var _raid_orders_ui := $HUD/RaidUI/RaidOrders
+
 
 func _ready():
 	if start_city == "":
@@ -30,8 +43,29 @@ func _ready():
 	# listening for city selection. 
 	# Once we add the intro narrative, this should no longer be necessary
 	yield(get_tree().create_timer(0.1), "timeout")
-	_listen_for_city_press()
+	_enter_state(State.CHOOSING_DESTINATION)
 
+
+func _enter_state(new_state):
+	# Leave the old state
+	match _state:
+		State.CHOOSING_DESTINATION:
+			_remove_city_listeners()
+		State.GIVING_ORDERS:
+			_raid_ui.visible = false
+	
+	_state = new_state
+	
+	# Enter the new state
+	match _state:
+		State.CHOOSING_DESTINATION:
+			_listen_for_city_press()
+		State.GIVING_ORDERS:
+			_city_placard.city = _city
+			_raid_orders_ui.reset()
+			_raid_orders_ui.orders = 5
+			_raid_ui.visible = true
+		
 
 func _listen_for_city_press():
 	var cities_on_screen = [_city]
@@ -50,19 +84,19 @@ func _listen_for_city_press():
 
 
 func _process(delta):
-	if _moving:
-		assert(_path_follow != null)
-		_path_follow.offset += movement_speed * delta * _direction
-		_morgan.position = _path_follow.position
-		if _end_of_road():
-			_moving = false
-			_morgan.play_idle_animation()
-			_path_follow.get_parent().remove_child(_path_follow)
-			_path_follow.queue_free()
-			_path_follow = null
-			_city = _destination
-			_destination = null
-			_listen_for_city_press()
+	match _state:
+		State.MOVING:
+			assert(_path_follow != null)
+			_path_follow.offset += movement_speed * delta * _direction
+			_morgan.position = _path_follow.position
+			if _end_of_road():
+				_morgan.play_idle_animation()
+				_path_follow.get_parent().remove_child(_path_follow)
+				_path_follow.queue_free()
+				_path_follow = null
+				_city = _destination
+				_destination = null
+				_enter_state(State.GIVING_ORDERS)
 
 
 func _end_of_road()->bool:
@@ -78,6 +112,8 @@ func _on_City_pressed(destination:Node2D):
 func _ride(from:Node2D, to:Node2D):
 	assert(from!=null)
 	assert(to!=null)
+	
+	_enter_state(State.MOVING)
 	
 	_destination = to
 	print("Now in %s, going to %s" % [_city.name, _destination.name])
@@ -109,3 +145,7 @@ func _remove_city_listeners():
 		city.selectable = false
 		if city.is_connected("pressed", self, "_on_City_pressed"):
 			city.disconnect("pressed", self, "_on_City_pressed")
+
+
+func _on_RaidOrders_done():
+	_enter_state(State.CHOOSING_DESTINATION)

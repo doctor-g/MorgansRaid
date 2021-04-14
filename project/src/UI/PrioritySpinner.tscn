@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/Images/UI/priority_down.png" type="Texture" id=1]
+[ext_resource path="res://assets/Images/UI/priority_up.png" type="Texture" id=2]
+[ext_resource path="res://assets/Fonts/CormorantGaramond/CormorantGaramond-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/Images/UI/priority_up_disabled.png" type="Texture" id=4]
+[ext_resource path="res://assets/Images/UI/priority_down_disabled.png" type="Texture" id=5]
+[ext_resource path="res://assets/Images/UI/priority_down_hover.png" type="Texture" id=6]
+[ext_resource path="res://assets/Images/UI/priority_up_hover.png" type="Texture" id=7]
+[ext_resource path="res://src/UI/PrioritySpinner.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="PrioritySpinner" type="Control"]
+anchor_right = 0.101562
+anchor_bottom = 0.114583
+rect_min_size = Vector2( 104, 88 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 4.0
+margin_top = 24.0
+margin_right = 99.0
+margin_bottom = 60.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 1.0
+margin_right = 104.0
+margin_bottom = 42.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 4 )
+
+[node name="DownButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 46.0
+margin_right = 104.0
+margin_bottom = 87.0
+disabled = true
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 5 )
+
+[node name="PriorityLabel" type="Label" parent="."]
+margin_left = 16.1068
+margin_top = 31.4644
+margin_right = 87.1068
+margin_bottom = 54.4644
+custom_fonts/font = SubResource( 1 )
+text = "Low"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="VBoxContainer/UpButton" to="." method="_on_UpButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/DownButton" to="." method="_on_DownButton_pressed"]
