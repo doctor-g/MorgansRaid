@@ -44,11 +44,8 @@ func _listen_for_city_press():
 			cities_on_screen.append(possible_destination)
 			possible_destination.connect("pressed", self, "_on_City_pressed", [possible_destination])
 				
+	# Tell the camera to show all those selectable cities
 	_camera.show_all(cities_on_screen)
-
-
-func _on_OffscreenDestinationArrow_pressed(city:City)->void:
-	_ride(_city, city)
 
 
 func _process(delta):
@@ -84,7 +81,6 @@ func _ride(from:Node2D, to:Node2D):
 	_destination = to
 	print("Now in %s, going to %s" % [_city.name, _destination.name])
 	_remove_city_listeners()
-	_remove_offscreen_destination_arrows()
 	
 	for child in $Roads.get_children():
 		var road := child as Road
@@ -111,14 +107,3 @@ func _remove_city_listeners():
 		var city := child as Node2D
 		if city.is_connected("pressed", self, "_on_City_pressed"):
 			city.disconnect("pressed", self, "_on_City_pressed")
-
-
-func _remove_offscreen_destination_arrows()->void:
-#	for arrow in _arrows.get_children():
-#		arrow.disconnect("pressed", self, "_on_OffscreenDestinationArrow_pressed")
-#		arrow.queue_free()
-	pass
-
-
-func _on_OffScreenDestinationOverlay_direction_selected(_dir:int, city:City):
-	_ride(_city, city)
