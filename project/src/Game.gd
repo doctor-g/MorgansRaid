@@ -41,6 +41,7 @@ func _listen_for_city_press():
 		var road := child as Road
 		if road.has_terminus(_city):
 			var possible_destination : City = road.get_other_terminus(_city)
+			possible_destination.selectable = true
 			cities_on_screen.append(possible_destination)
 			possible_destination.connect("pressed", self, "_on_City_pressed", [possible_destination])
 				
@@ -104,6 +105,7 @@ func _ride(from:Node2D, to:Node2D):
 
 func _remove_city_listeners():
 	for child in $Cities.get_children():
-		var city := child as Node2D
+		var city := child as City
+		city.selectable = false
 		if city.is_connected("pressed", self, "_on_City_pressed"):
 			city.disconnect("pressed", self, "_on_City_pressed")

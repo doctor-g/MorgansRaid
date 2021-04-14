@@ -10,6 +10,11 @@ const _MEDIUM_THRESHOLD := 4999
 export var city_name : String = "UNNAMED" setget _set_city_name
 export var population : int = 0 setget _set_population
 
+var selectable := false setget _set_selectable
+
+onready var _highlight := $Highlight
+onready var _animation_player := $AnimationPlayer
+
 
 # Report whether this city is currently on screen enough to be selectable.
 # It is not enough to say that just a bit of it is onscreen, and hence
@@ -41,3 +46,13 @@ func _set_population(value:int)->void:
 		$CityIcon.size = CityIcon.Size.MEDIUM
 	else:
 		$CityIcon.size = CityIcon.Size.LARGE
+
+
+func _set_selectable(value:bool)->void:
+	selectable = value
+	if selectable:
+		_highlight.visible = true
+		_animation_player.play("highlight")
+	else:
+		_highlight.visible = false
+		_animation_player.stop()
