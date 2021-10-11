@@ -1,5 +1,5 @@
 class_name NoEffect
 extends Effect
 
-func run():
-	pass
+func apply_to(settings:RaidSettings)->RaidSettings:
+	return settings

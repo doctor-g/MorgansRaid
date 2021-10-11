@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Effects/NoEffect.gd"
 }, {
+"base": "Object",
+"class": "RaidSettings",
+"language": "GDScript",
+"path": "res://src/Effects/RaidSettings.gd"
+}, {
 "base": "Effect",
 "class": "RaidTimeEffect",
 "language": "GDScript",
@@ -90,6 +95,7 @@ _global_script_class_icons={
 "HorsesSpeedEffect": "",
 "MinSleepEffect": "",
 "NoEffect": "",
+"RaidSettings": "",
 "RaidTimeEffect": "",
 "ReputationGainEffect": "",
 "ReputationMultiplierEffect": "",

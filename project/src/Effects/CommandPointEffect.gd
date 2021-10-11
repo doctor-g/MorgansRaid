@@ -9,6 +9,7 @@ func _init(_value:int):
 	value = _value
 
 
-func run():
+func apply_to(settings:RaidSettings)->RaidSettings:
 	assert(value!=_UNINITIALIZED, "Value was not initialized")
-	GlobalState.orders = value
+	settings.command_points = value
+	return settings

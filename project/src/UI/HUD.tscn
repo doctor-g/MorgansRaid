@@ -1,10 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/Images/UI/hud.png" type="Texture" id=1]
 [ext_resource path="res://assets/Fonts/EBGaramond/EBGaramond-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=3]
+[ext_resource path="res://assets/Images/UI/sun_box.png" type="Texture" id=4]
+[ext_resource path="res://assets/Images/UI/sun.png" type="Texture" id=5]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -586.361, 38.2225, -359.072, 5.33936, 359.072, -5.33936, -16.8894, -84.0583, 0, 0, 0, 0, 586.658, 17.6898 )
+}
+
+[sub_resource type="DynamicFont" id=2]
 size = 38
 font_data = ExtResource( 2 )
 
@@ -17,6 +24,32 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="Shade" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.152941 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Sprite" parent="."]
+position = Vector2( 515.601, 84.1869 )
+texture = ExtResource( 4 )
+
+[node name="Path2D" type="Path2D" parent="Header"]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Header/Path2D"]
+position = Vector2( -586.361, 38.2225 )
+rotation = -0.488554
+loop = false
+
+[node name="Sun" type="Sprite" parent="Header/Path2D/PathFollow2D"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 5 )
 
 [node name="Footer" type="Sprite" parent="."]
 position = Vector2( 517.016, 680.985 )
@@ -34,7 +67,7 @@ margin_left = -159.828
 margin_top = -198.0
 margin_right = -58.8284
 margin_bottom = -139.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
 align = 1

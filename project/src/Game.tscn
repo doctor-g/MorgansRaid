@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/Map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Morgan.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://src/UI/CityPlacard.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UI/RaidOrders.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Images/camping.png" type="Texture" id=10]
+[ext_resource path="res://assets/Images/raiding.png" type="Texture" id=11]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -683,5 +685,15 @@ anchor_right = 3.14024
 anchor_bottom = 7.00765
 
 [node name="HUD" parent="HUD" instance=ExtResource( 9 )]
+
+[node name="CampingImage" type="Sprite" parent="HUD"]
+visible = false
+position = Vector2( 527.055, 315.64 )
+texture = ExtResource( 10 )
+
+[node name="RaidingImage" type="Sprite" parent="HUD"]
+visible = false
+position = Vector2( 507.155, 387.514 )
+texture = ExtResource( 11 )
 
 [connection signal="done" from="HUD/RaidUI/RaidOrders" to="." method="_on_RaidOrders_done"]

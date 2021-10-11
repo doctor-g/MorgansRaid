@@ -10,6 +10,7 @@ func _init(_amount:int):
 	amount = _amount
 
 
-func run():
+func apply_to(settings:RaidSettings)->RaidSettings:
 	assert(amount!=_UNINITIALIZED, "Amount was not initialized")
-	GlobalState.reputation += amount
+	settings.reputation += amount
+	return settings

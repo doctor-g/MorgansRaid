@@ -3,11 +3,22 @@ extends Node2D
 enum State {
 	CHOOSING_DESTINATION,
 	MOVING,
-	GIVING_ORDERS
+	GIVING_ORDERS,
+	RAIDING,
+	CAMPING
 }
 
 # Morgan's speed in units per second
 export var movement_speed := 600
+
+# How fast Morgan's men move
+export var screen_units_per_hour := 100
+
+# How fast time elapses at night
+export var game_hours_per_second_camping := 5.0
+
+# How fast time elapses during a raid
+export var game_hours_per_second_raiding := 4.0
 
 # The city to start the game
 export(NodePath) var start_city
@@ -15,6 +26,18 @@ export(NodePath) var start_city
 # Tourist mode means no raiding
 # It is meant for debugging movement without having to stop and raid.
 export var tourist_mode := false
+
+# How many hours are needed by the men for a full night's rest
+export var hours_rest_required := 8.0
+
+# How many hours have we camped
+var _camping_time_elapsed := 0.0
+
+# How many hours have we raided
+var _raiding_time_elapsed := 0.0
+
+# How long a raid should last
+var _raid_duration := 4.0
 
 var _moving := false
 var _path_follow : PathFollow2D = null
@@ -31,7 +54,10 @@ onready var _camera := $Camera
 onready var _raid_ui := $HUD/RaidUI
 onready var _city_placard := $HUD/RaidUI/CityPlacard
 onready var _raid_orders_ui := $HUD/RaidUI/RaidOrders
+onready var _raiding_image := $HUD/RaidingImage
 
+onready var _sunrise:float = $HUD/HUD.sunrise
+onready var _sunset:float = $HUD/HUD.sunset
 
 func _ready():
 	GlobalState.reset()
@@ -55,22 +81,33 @@ func _ready():
 func _enter_state(new_state):
 	# Leave the old state
 	match _state:
+		State.CAMPING:
+			$HUD/CampingImage.visible = false
 		State.CHOOSING_DESTINATION:
 			_remove_city_listeners()
 		State.GIVING_ORDERS:
 			_raid_ui.visible = false
 			_city.raided = true
 			var signed_orders : Array = _raid_orders_ui.get_signed_orders()
+			var raid_settings := RaidSettings.new()
 			for order in signed_orders:
 				var target_type = order.type;
 				var priority = order.priority;
 				var effect := EffectMap.look_up(target_type, priority)
-				effect.run()
+				raid_settings = effect.apply_to(raid_settings)
+			_commit(raid_settings)
+			
+		State.RAIDING:
+			_raiding_time_elapsed = 0.0
+			_raiding_image.visible = false
 	
 	_state = new_state
 	
 	# Enter the new state
 	match _state:
+		State.CAMPING:
+			_camping_time_elapsed = 0
+			$HUD/CampingImage.visible = true
 		State.CHOOSING_DESTINATION:
 			_listen_for_city_press()
 		State.GIVING_ORDERS:
@@ -78,7 +115,16 @@ func _enter_state(new_state):
 			_raid_orders_ui.reset()
 			_raid_orders_ui.orders = GlobalState.orders
 			_raid_ui.visible = true
-		
+		State.RAIDING:
+			print('Raiding for %d hours' % _raid_duration)
+			_raiding_image.visible = true
+
+
+func _commit(settings:RaidSettings)->void:
+	GlobalState.reputation += settings.reputation
+	GlobalState.orders = settings.command_points
+	_raid_duration = settings.duration
+
 
 func _listen_for_city_press():
 	var cities_on_screen = [_city]
@@ -96,12 +142,30 @@ func _listen_for_city_press():
 	_camera.show_all(cities_on_screen)
 
 
-func _process(delta):
+func _process(delta:float):
 	match _state:
+		State.CAMPING:
+			GlobalState.time += delta * game_hours_per_second_camping
+			_camping_time_elapsed += delta * game_hours_per_second_camping
+			if _camping_time_elapsed >= hours_rest_required \
+				and fmod(GlobalState.time,24) >= _sunrise:
+				if _destination != null:
+					_enter_state(State.MOVING)
+				else:
+					_enter_state(State.CHOOSING_DESTINATION)
+		
 		State.MOVING:
 			assert(_path_follow != null)
+			
+			# Update time
+			GlobalState.time += (movement_speed * delta) / screen_units_per_hour 
+			if _is_time_to_camp():
+				_enter_state(State.CAMPING)
+			
+			# Update Morgan's position
 			_path_follow.offset += movement_speed * delta * _direction
 			_morgan.position = _path_follow.position
+			
 			if _end_of_road():
 				_morgan.play_idle_animation()
 				_path_follow.get_parent().remove_child(_path_follow)
@@ -111,11 +175,23 @@ func _process(delta):
 				_destination = null
 				_enter_state(State.GIVING_ORDERS if not tourist_mode else State.CHOOSING_DESTINATION)
 
+		State.RAIDING:
+			var elapsed := delta * game_hours_per_second_raiding
+			GlobalState.time += elapsed
+			_raiding_time_elapsed += elapsed
+			if _raiding_time_elapsed > _raid_duration:
+				_enter_state(State.CAMPING if _is_time_to_camp() else State.CHOOSING_DESTINATION)
+
 
 func _end_of_road()->bool:
 	return (_direction > 0 and _path_follow.unit_offset >= 1.0) \
 	  or (_direction < 0 and _path_follow.unit_offset <= 0.0)
-	
+
+
+func _is_time_to_camp()->bool:
+	var hour_of_day := fmod(GlobalState.time,24)
+	return hour_of_day < _sunrise or hour_of_day > _sunset
+
 
 func _on_City_pressed(destination:Node2D):
 	_ride(_city, destination)
@@ -161,4 +237,4 @@ func _remove_city_listeners():
 
 
 func _on_RaidOrders_done():
-	_enter_state(State.CHOOSING_DESTINATION)
+	_enter_state(State.RAIDING)
