@@ -34,6 +34,8 @@ onready var _raid_orders_ui := $HUD/RaidUI/RaidOrders
 
 
 func _ready():
+	GlobalState.reset()
+	
 	if start_city == "":
 		print("Warning: start_city not specified. Using Mauckport.")
 		start_city = $Cities/Mauckport.get_path()
@@ -58,7 +60,12 @@ func _enter_state(new_state):
 		State.GIVING_ORDERS:
 			_raid_ui.visible = false
 			_city.raided = true
-			GlobalState.reputation += 10
+			var signed_orders : Array = _raid_orders_ui.get_signed_orders()
+			for order in signed_orders:
+				var target_type = order.type;
+				var priority = order.priority;
+				var effect := EffectMap.look_up(target_type, priority)
+				effect.run()
 	
 	_state = new_state
 	
@@ -69,7 +76,7 @@ func _enter_state(new_state):
 		State.GIVING_ORDERS:
 			_city_placard.city = _city
 			_raid_orders_ui.reset()
-			_raid_orders_ui.orders = 5
+			_raid_orders_ui.orders = GlobalState.orders
 			_raid_ui.visible = true
 		
 

@@ -2,6 +2,8 @@ extends Control
 
 signal done
 
+const TargetType := preload("res://src/Constants.gd").TargetType
+
 # How many orders can be given
 export var orders := 5 setget _set_orders
 
@@ -22,6 +24,14 @@ func reset():
 	_sign_orders_button.reset()
 	for target in $Targets.get_children():
 		target.reset()
+
+
+# Returns an array of {type:,priority:} maps.
+func get_signed_orders()->Array:
+	var result := []
+	for node in $Targets.get_children():
+		result.append({'type': node.type, 'priority': node.priority})
+	return result
 
 
 func _set_orders(value:int)->void:

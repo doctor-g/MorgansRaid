@@ -1,25 +1,23 @@
 extends Control
-tool
 
 signal priority_changed(new_priority, old_priority)
 
-export(Enums.Priority) var priority := Enums.Priority.LOW setget _set_priority
+export(Constants.Priority) var priority = Constants.Priority.LOW setget _set_priority
 
 var _orders_remaining : int
+
+onready var _label := $PriorityLabel
 
 func _set_priority(value)->void:
 	priority = value
 	
-	# Cannot use onready variables here because this is a tool
-	var label = $PriorityLabel
-	
 	match priority:
-		Enums.Priority.LOW:
-			label.text = "Low"
-		Enums.Priority.MEDIUM:
-			label.text = "Medium"
-		Enums.Priority.HIGH:
-			label.text = "High"
+		Constants.Priority.LOW:
+			_label.text = "Low"
+		Constants.Priority.MEDIUM:
+			_label.text = "Medium"
+		Constants.Priority.HIGH:
+			_label.text = "High"
 	_update_button_status()
 
 
@@ -39,5 +37,5 @@ func update_orders(orders_remaining:int)->void:
 
 
 func _update_button_status():
-	$VBoxContainer/UpButton.disabled = priority == Enums.Priority.HIGH or _orders_remaining == 0
-	$VBoxContainer/DownButton.disabled = priority == Enums.Priority.LOW
+	$VBoxContainer/UpButton.disabled = priority == Constants.Priority.HIGH or _orders_remaining == 0
+	$VBoxContainer/DownButton.disabled = priority == Constants.Priority.LOW

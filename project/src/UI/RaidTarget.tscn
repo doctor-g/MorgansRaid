@@ -25,4 +25,5 @@ margin_top = 20.0
 margin_right = 104.0
 margin_bottom = 108.0
 size_flags_horizontal = 4
+
 [connection signal="priority_changed" from="PrioritySpinner" to="." method="_on_PrioritySpinner_priority_changed"]
