@@ -58,6 +58,7 @@ func _enter_state(new_state):
 		State.GIVING_ORDERS:
 			_raid_ui.visible = false
 			_city.raided = true
+			GlobalState.reputation += 10
 	
 	_state = new_state
 	

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Images/UI/hud.png" type="Texture" id=1]
+[ext_resource path="res://assets/Fonts/EBGaramond/EBGaramond-Medium.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/UI/HUD.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 38
+font_data = ExtResource( 2 )
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Footer" type="Sprite" parent="."]
+position = Vector2( 517.016, 680.985 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ReputationLabel" type="Label" parent="Footer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -159.828
+margin_top = -198.0
+margin_right = -58.8284
+margin_bottom = -139.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}

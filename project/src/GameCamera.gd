@@ -24,7 +24,7 @@ func show_all(cities:Array):
 	rect.end += Vector2(zoom_padding*2, zoom_padding*2)
 	
 	# Calculate the zoom needed to show the rectangle
-	var screen_size := Vector2(1024,768)       # Kludge
+	var screen_size := Vector2(1024,768-200)       # Kludge. -200 is HUD footer.
 	var x_scale := rect.size.x / screen_size.x
 	var y_scale := rect.size.y / screen_size.y 
 	var scale := max(max(x_scale, y_scale), 1) # Never zoom in past 1.

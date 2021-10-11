@@ -7,3 +7,5 @@ See [docs/original-credits.txt](docs/original-credits.txt) for the full credits 
 ## Third-Party Assets
 
 - [CormorantGaramond font](https://fonts.google.com/specimen/Cormorant+Garamond) licensed under [OFL](project/assets/Fonts/OFL.txt)
+
+- [EB Garamond font](https://fonts.google.com/specimen/EB+Garamond) licensed under [OFL](project/assets/Fonts/OFL.txt)
