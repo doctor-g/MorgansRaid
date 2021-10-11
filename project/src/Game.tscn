@@ -320,6 +320,7 @@ population = 8130
 position = Vector2( 596.01, 2800.67 )
 city_name = "Mauckport"
 population = 500
+raided = true
 
 [node name="New Albany" parent="Cities" instance=ExtResource( 3 )]
 position = Vector2( 1490.53, 2267.17 )
@@ -679,4 +680,5 @@ anchor_left = 2.31895
 anchor_top = 6.6001
 anchor_right = 3.14024
 anchor_bottom = 7.00765
+
 [connection signal="done" from="HUD/RaidUI/RaidOrders" to="." method="_on_RaidOrders_done"]

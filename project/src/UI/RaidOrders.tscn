@@ -122,4 +122,5 @@ margin_bottom = 278.141
 
 [node name="PostSignatureTimer" type="Timer" parent="."]
 one_shot = true
+
 [connection signal="done" from="SignOrdersButton" to="." method="_on_SignOrdersButton_done"]

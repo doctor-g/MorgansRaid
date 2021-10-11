@@ -57,6 +57,7 @@ func _enter_state(new_state):
 			_remove_city_listeners()
 		State.GIVING_ORDERS:
 			_raid_ui.visible = false
+			_city.raided = true
 	
 	_state = new_state
 	
