@@ -9,3 +9,6 @@ var reputation_multiplier := 1.0
 var command_points := 0
 
 
+func to_string()->String:
+	return 'duration %f\nreputation %d\nmultiplier %f\ncommand_points %d\n' %\
+	  [duration, reputation, reputation_multiplier, command_points]

@@ -12,5 +12,5 @@ func _init(_amount:float):
 
 func apply_to(settings:RaidSettings)->RaidSettings:
 	assert(factor!=_UNINITIALIZED, "Factor was not initialized")
-	print('Reputation multiplier ignored. Not yet implemented.')
+	settings.reputation_multiplier = factor
 	return settings

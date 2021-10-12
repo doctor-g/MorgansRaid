@@ -121,7 +121,8 @@ func _enter_state(new_state):
 
 
 func _commit(settings:RaidSettings)->void:
-	GlobalState.reputation += settings.reputation
+	print('Committing raid settings:\n%s' % settings.to_string())
+	GlobalState.reputation += (settings.reputation * settings.reputation_multiplier) as int
 	GlobalState.orders = settings.command_points
 	_raid_duration = settings.duration
 
