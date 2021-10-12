@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Images/UI/hud.png" type="Texture" id=1]
 [ext_resource path="res://assets/Fonts/EBGaramond/EBGaramond-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=3]
 [ext_resource path="res://assets/Images/UI/sun_box.png" type="Texture" id=4]
 [ext_resource path="res://assets/Images/UI/sun.png" type="Texture" id=5]
+[ext_resource path="res://assets/Images/UI/morgan_flag_HUD.png" type="Texture" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -14,6 +15,11 @@ _data = {
 [sub_resource type="DynamicFont" id=2]
 size = 38
 font_data = ExtResource( 2 )
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -201.131, 53.0439, 0, 0, 0, 0, 187.679, 52.2948 )
+}
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -75,3 +81,14 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="Path2D" type="Path2D" parent="Footer"]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Footer/Path2D"]
+position = Vector2( -201.131, 53.0439 )
+rotation = -0.00192792
+
+[node name="MorganFlag" type="Sprite" parent="Footer/Path2D/PathFollow2D"]
+position = Vector2( -17.9305, -25.5058 )
+texture = ExtResource( 6 )

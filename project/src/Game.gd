@@ -69,6 +69,10 @@ func _ready():
 	_morgan.position = _city.position
 	_camera.position = _morgan.position
 	
+	# Initialize the length of the trip, which is needed for the HUD
+	var initial_distance := _compute_distance_to_ohio()
+	GlobalState.total_map_distance_to_ohio = initial_distance
+	
 	# There is a problem right now where, because we go right into
 	# movement, Corydon does not yet think it is on-screen.
 	# The kludge here is to wait a very short amount of time before
@@ -76,6 +80,15 @@ func _ready():
 	# Once we add the intro narrative, this should no longer be necessary
 	yield(get_tree().create_timer(0.1), "timeout")
 	_enter_state(State.CHOOSING_DESTINATION)
+
+
+func _compute_distance_to_ohio()->float:
+	return (_morgan.position - $Cities/Harrison.position).length()
+
+
+# Update the global state's distance to ohio and return that distance
+func _update_distance_to_ohio()->void:
+	GlobalState.distance_to_ohio = _compute_distance_to_ohio()
 
 
 func _enter_state(new_state):
@@ -166,6 +179,7 @@ func _process(delta:float):
 			# Update Morgan's position
 			_path_follow.offset += movement_speed * delta * _direction
 			_morgan.position = _path_follow.position
+			_update_distance_to_ohio()
 			
 			if _end_of_road():
 				_morgan.play_idle_animation()

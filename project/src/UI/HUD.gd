@@ -9,13 +9,15 @@ export var hours_fade_range := 0.5
 export var night_modulation_alpha := 0.8
 
 onready var _reputation_label := $Footer/ReputationLabel
-onready var _pathfollow := $Header/Path2D/PathFollow2D
+onready var _sun_pathfollow := $Header/Path2D/PathFollow2D
 onready var _shade := $Shade
+onready var _morgan_flag_pathfollow := $Footer/Path2D/PathFollow2D
 
 
 func _ready():
 	GlobalState.connect("reputation_changed", self, "_on_GlobalState_reputation_changed")
 	GlobalState.connect("time_changed", self, "_on_GlobalState_time_changed")
+	GlobalState.connect("distance_changed", self, "_on_GlobalState_distance_changed")
 
 	
 func _on_GlobalState_reputation_changed(new_reputation:int)->void:
@@ -26,7 +28,7 @@ func _on_GlobalState_time_changed(time:float)->void:
 	# Update sun's position
 	var hour_of_the_day := fmod(time, 24)
 	var sun_progress := range_lerp(hour_of_the_day, sunrise, sunset, 0.0, 1.0)
-	_pathfollow.unit_offset = sun_progress
+	_sun_pathfollow.unit_offset = sun_progress
 	
 	# Update screen fade
 	var alpha : float
@@ -40,3 +42,8 @@ func _on_GlobalState_time_changed(time:float)->void:
 			0, night_modulation_alpha)
 	alpha = clamp(alpha, 0, night_modulation_alpha)
 	_shade.modulate.a = alpha
+
+
+func _on_GlobalState_distance_changed(distance)->void:
+	var percent = 1.0 - (distance / GlobalState.total_map_distance_to_ohio)
+	_morgan_flag_pathfollow.unit_offset = percent
